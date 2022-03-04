@@ -18,7 +18,18 @@ public class WormholeGame {
     }
 
     protected Players getPlayer(){
+
         return players.get(PlayerIndex);
+    }
+
+    public String toString(){
+        return getPlayer().getName() +" you are on square 1";
+    }
+
+    public static void main(String[] args) {
+        WormholeGame wg = new WormholeGame();
+        wg.getPlayer();
+        wg.toString();
     }
 
 }
