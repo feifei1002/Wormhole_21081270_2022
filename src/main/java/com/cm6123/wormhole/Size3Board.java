@@ -3,12 +3,12 @@ package com.cm6123.wormhole;
 import java.util.HashMap;
 import java.util.List;
 
-public class Boards {
+public class Size3Board {
 
-    private int size3Board[][];
-    private HashMap< Players,Integer>PlayersPosition = new HashMap<Players, Integer>(6);
+    private final int size3Board[][];
+    private final HashMap< Players,Integer>PlayersPosition = new HashMap<Players, Integer>(6);
 
-    public Boards(List<Players> players){
+    public Size3Board(List<Players> players){
 //    public Boards(){
         size3Board = new int[3][3];
         for(int i=0; i< size3Board.length; i++){

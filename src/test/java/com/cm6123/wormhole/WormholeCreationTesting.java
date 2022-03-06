@@ -19,7 +19,7 @@ public class WormholeCreationTesting {
         Players p1 = new Players("Fei");
         assertEquals("Fei", p1.getName());
     }
-//
+
     @Test
     public void PlayersShouldBeOnSquare1(){
         Players p1 = new Players("Fei");
