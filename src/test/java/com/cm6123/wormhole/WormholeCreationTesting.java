@@ -7,12 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WormholeCreationTesting {
 
-//    @Test
-//    public void ShouldBeAbleToCreateASize3Board(){
-//        WormholeGame game = new WormholeGame();
-//        Boards size3Board = new Boards();
-//        assertEquals(6,size3Board.getClass());
-//    }
+    @Test
+    public void ShouldBeAbleToCreateASize5Board(){
+        Board size5Board = new Board(5);
+        assertEquals(5,size5Board.getBoardSize());
+    }
 
     @Test
     public void ShouldBeAbleToGetPlayerNames(){
