@@ -1,11 +1,10 @@
 package com.cm6123.wormhole;
 
-import com.cm6123.wormhole.dice.Dice;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class WormholeCreationTesting {
+public class WormholeTesting {
 
     @Test
     public void ShouldBeAbleToCreateASize5Board(){
@@ -26,8 +25,8 @@ public class WormholeCreationTesting {
     }
 
 //    @Test
-//    public void ShouldBeAbleToGetMaximumOf6Players(){
-//        Players players = new Players();
+//    public void ShouldShowErrorMessageWhenMaximumOfPlayersExceed6(){
+//        Players player = new Players("Fei");
 //        players.getNoOfPlayers();
 //        assertEquals();
 //    }

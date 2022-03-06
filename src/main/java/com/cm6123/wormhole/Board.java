@@ -1,7 +1,7 @@
 package com.cm6123.wormhole;
 
 public class Board {
-    private int BoardSize;
+    private final int BoardSize;
 
     public Board(int BoardSize){
         this.BoardSize = BoardSize;

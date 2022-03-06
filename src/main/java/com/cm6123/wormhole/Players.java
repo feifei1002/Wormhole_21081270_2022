@@ -1,7 +1,7 @@
 package com.cm6123.wormhole;
 
 public class Players {
-    private String name;
+    private final String name;
     private int position;
 
     public Players(String name){
