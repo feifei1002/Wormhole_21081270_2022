@@ -1,29 +1,40 @@
 package com.cm6123.wormhole;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Players {
     private String name;
+    private int position;
 
+
+//    public Players(String AName){
+//        name = AName;
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Please enter the name of player");
+//        name = sc.nextLine();
+//        this.position = 1;
+//    }
 
     public Players(String name){
         this.name = name;
+        this.position = 1;
     }
 
-    public Players(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the name of player 1");
-        String name = sc.nextLine();
-        Players player = new Players(name);
-        player.getName();
-    }
-
+//    public Players(){
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Please enter the name of player");
+//        name = sc.nextLine();
+//    }
     public String getName(){
         return name;
     }
 
-    public static void main(String[] args) {
-        Players p1 = new Players();
-        p1.getName();
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position){
+        this.position = position;
     }
 }
