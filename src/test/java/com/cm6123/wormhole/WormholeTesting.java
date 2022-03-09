@@ -1,8 +1,13 @@
 package com.cm6123.wormhole;
 
+import com.cm6123.wormhole.dice.Dice;
+import com.cm6123.wormhole.game.Board;
+import com.cm6123.wormhole.game.Players;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class WormholeTesting {
 
@@ -24,16 +29,21 @@ public class WormholeTesting {
         assertEquals(1, p1.getPosition());
     }
 
-//    @Test
-//    public void ShouldShowErrorMessageWhenMaximumOfPlayersExceed6(){
-//        Players player = new Players("Fei");
-//        players.getNoOfPlayers();
-//        assertEquals();
-//    }
+    @Test
+    public void ShouldBeAbleToMoveToSquare8When3And4AreRolled(){
+        Dice aDice1;
+        aDice1 = mock(Dice.class);
+        when(aDice1.roll()).thenReturn(3);
 
-//    @Test
-//    public void ShouldBeAbleToMoveToSquare7When3And4AreRolled(){
-//        Dice aDice = new Dice();
-//        Board aBoard = aDice.roll();
-//    }
+        Dice aDice2;
+        aDice2 = mock(Dice.class);
+        when(aDice2.roll()).thenReturn(4);
+
+        Players p1 = new Players("Fei");
+
+        int p1Position = p1.getPosition();
+        int dice1Roll = aDice1.roll();
+        int dice2Roll = aDice2.roll();
+        assertEquals(8,dice1Roll+dice2Roll+p1Position);
+    }
 }
