@@ -1,8 +1,13 @@
 package com.cm6123.wormhole.game;
 
+import com.cm6123.wormhole.dice.Dice;
+
 public class Players {
     private final String name;
     private int position;
+    Dice aDice1;
+    Dice aDice2;
+    int CurrentPosition;
 
 
     public Players(String PlayerName){
@@ -18,8 +23,18 @@ public class Players {
         return position;
     }
 
-    public void setPosition(int PlayerPosition){
-        position = PlayerPosition;
+    public int CurrentPosition(){
+        int aDice1Roll = aDice1.roll();
+        int aDice2Roll = aDice2.roll();
+        CurrentPosition = aDice1Roll+aDice2Roll+position;
+        return CurrentPosition;
+    }
+
+    public boolean getWinner(){
+        if(CurrentPosition>=9){
+            return true;
+        }
+        return false;
     }
 }
 

@@ -1,13 +1,14 @@
-package com.cm6123.wormhole.game;
-
-import com.cm6123.wormhole.game.Players;
-
-import java.util.HashMap;
-import java.util.List;
-
+//package com.cm6123.wormhole.game;
+//
 //public class Size3Board{
-//    int count =
+//    private int [][] size3Board = {{7,8,9},{6,5,4},{1,2,3}};
+//
+//    public static Board getBoardSize3(){
+//        final int[][] size3Board = new int[][3];
+//        return size3Board;
+//    }
 //}
+
 
 //public class Size3Board {
 //
