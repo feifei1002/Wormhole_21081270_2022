@@ -1,44 +1,32 @@
 package com.cm6123.wormhole.game;
 
 public class Board {
-    private final int BoardSize;
-    private int [][] size3Board = {{7,8,9},{6,5,4},{1,2,3}};
-    private int [][] size4Board = {{16,15, 14, 13,},{9,10,11,12},{8,7,6,5},{1,2,3,4}};
 
-
+    private final int [][] BoardSize;
+    private final int SIZE;
 
     public Board(int size){
-        BoardSize = size;
-    }
+        SIZE = size;
+        BoardSize = new int[SIZE][SIZE];
+        for(int i=0; i<SIZE; i++){
+            for(int j=0; j<SIZE; j++){
+                BoardSize[i][j]=i*SIZE + j+1;
+            } // end of for loop for columns
+        } // end of for loop for rows
+    } // end of constructor
 
-    public int getBoardSize3(){
-        final int[][] size3 = size3Board;
-        return BoardSize;
+    public void createBoard(){
+        for(int i=BoardSize.length-1; i>=0;i--){   //create the board from bottom up
+            for (int j=0; j< BoardSize.length; j++){
+                if(i%2!=0){ //check the odd rows
+                    System.out.print(BoardSize[i][BoardSize.length-1-j]+" ");
+                } // end if
+                else{ // even rows
+                    System.out.print(BoardSize[i][j]+" ");
+                } // end of else
+            } // end of for loop for columns
+            System.out.println();
+        } // end of for loop for rows
+    } // end of getBoard() method
 
-    }
-
-    public int getBoardSize4(){
-        final int[][] size4 = size4Board;
-//        for(int i=0;i<size4Board.length;i++){
-//            for(int j=0;j<size4Board.length;j++){
-//                System.out.print(size4Board[i][j]+" ");
-//            }
-//            System.out.println(" ");
-//        }
-        return BoardSize;
-    }
-
-    public int getBoardSize5(){
-        final int[][] size4Board = this.size4Board;
-//        for(int i=0;i<size4Board.length;i++){
-//            for(int j=0;j<size4Board.length;j++){
-//                System.out.print(size4Board[i][j]+" ");
-//            }
-//            System.out.println(" ");
-//        }
-        return BoardSize;
-    }
-
-
-}
-
+} // end of Board class
