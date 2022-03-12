@@ -1,7 +1,5 @@
 package com.cm6123.wormhole.game;
 
-import java.util.List;
-
 public class Players{
     private final String name;
     private final int position;
