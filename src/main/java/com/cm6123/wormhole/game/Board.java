@@ -29,4 +29,11 @@ public class Board {
         } // end of for loop for rows
     } // end of getBoard() method
 
+    public int getSIZE() {
+        return SIZE;
+    }
+
+//    public int[][] getBoardSize() {
+//        return BoardSize;
+//    }
 } // end of Board class
