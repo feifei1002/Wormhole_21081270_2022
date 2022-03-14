@@ -12,6 +12,7 @@ public class WormholeGame {
     private Map<Players, Integer> playerPosition;
     private final int[][] gameBoard;
     private int PlayerNumbers;
+    private int PlayerIndex;
     private boolean GameOver;
     private Players winner;
     Dice dice1 = new Dice(6);
@@ -41,15 +42,19 @@ public class WormholeGame {
 
 
     public Players getCurrentPlayer() { // check who is the current player
+        PlayerIndex = 0;
         Players FirstPlayer = players.get(0);
-        Players CurrentPlayer = players.get((players.indexOf(FirstPlayer)+1)%players.size());
-        return CurrentPlayer;
+        if(PlayerIndex<=0) {
+            Players CurrentPlayer = players.get((PlayerIndex + 1) % players.size());
+            PlayerIndex++;
+            return CurrentPlayer;
+            }
+        return FirstPlayer;
     } //end of getCurrentPlayer method
 
 
     public int move(int newLocation) {
         Players CurrentPlayer = getCurrentPlayer();
-//        int FinalPosition = board.getSIZE()* board.getSIZE();
         int FinalPosition = gameBoard.length* gameBoard.length;
         this.newLocation = newLocation;
         int PlayerOldLocation = playerPosition.get(CurrentPlayer);
