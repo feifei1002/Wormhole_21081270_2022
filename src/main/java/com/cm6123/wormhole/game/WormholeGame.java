@@ -7,11 +7,9 @@ import java.util.*;
 
 public class WormholeGame {
 
-    Board board;
     private List<Players> players;
     private Map<Players, Integer> playerPosition;
     private final int[][] gameBoard;
-    private int PlayerNumbers;
     private int PlayerIndex;
     private boolean GameOver;
     private Players winner;
@@ -44,7 +42,7 @@ public class WormholeGame {
     public Players getCurrentPlayer() { // check who is the current player
         PlayerIndex = 0;
         Players FirstPlayer = players.get(0);
-        if(PlayerIndex<=0) {
+        if(PlayerIndex>=0) {
             Players CurrentPlayer = players.get((PlayerIndex + 1) % players.size());
             PlayerIndex++;
             return CurrentPlayer;
