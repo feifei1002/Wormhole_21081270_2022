@@ -49,10 +49,10 @@ public class WormholeTesting {
         //When
         int dice1Roll = aDice1.roll();
         int dice2Roll = aDice2.roll();
-        int newPosition = dice1Roll + dice2Roll;
+        int position = dice1Roll+dice2Roll;
 
         //Then
-        assertEquals(8, wg.move(newPosition));
+        assertEquals(8, wg.move(position));
         assertEquals("Cheng",wg.getCurrentPlayer().getName());
 
     }
@@ -82,10 +82,40 @@ public class WormholeTesting {
         int dice1Roll = aDice1.roll();
         int dice2Roll = aDice2.roll();
         int newPosition = dice1Roll + dice2Roll;
+        wg.play();
 
         //Then
-        assertEquals(12, wg.move(newPosition));
-        assertEquals(9,wg.winner());
+        assertEquals(9, wg.move(newPosition));
+        assertEquals("Fei", wg.getWinner().getName());
     }
+//
+//    @Test
+//    public void ShouldReturnBackToPlayer1WhenAllThePlayersHaveRolled(){
+//       //Given
+//        Dice dice1 = new Dice(6);
+//        Dice dice2 = new Dice(6);
+//
+//        Players p1 = new Players("Fei");
+//        Players p2 = new Players("Cheng");
+//        Players p3 = new Players("Steven");
+//        Players p4 = new Players("Sihyun");
+//
+//        Board size5 = new Board(5);
+//        size5.createBoard();
+//
+//        WormholeGame wg = new WormholeGame(size5, 4);
+//        wg.addPlayer(p1);
+//        wg.addPlayer(p2);
+//        wg.addPlayer(p3);
+//        wg.addPlayer(p4);
+//
+//        // When
+//
+//
+//        // Then
+////        assertTrue(p1.rolled()&&p2.rolled()&&p3.rolled()&&p4.rolled());
+////        assertEquals("Fei", wg.rolled());
+//    }
+
 
 }

@@ -1,9 +1,12 @@
 package com.cm6123.wormhole.game;
 
+import java.util.Map;
+
 public class Board {
 
     private final int[][] BoardSize;
     private final int SIZE;
+    private Map<Players, Integer> players;
 
     public Board(int size) {
         SIZE = size;
@@ -32,4 +35,5 @@ public class Board {
     public int getSIZE() {
         return SIZE;
     }
+
 }

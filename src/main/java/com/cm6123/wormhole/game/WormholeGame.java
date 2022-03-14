@@ -1,14 +1,26 @@
 package com.cm6123.wormhole.game;
 
 
+import com.cm6123.wormhole.dice.Dice;
+
 import java.util.*;
 
 public class WormholeGame {
+
+    Board board;
     private List<Players> players;
     private Map<Players, Integer> playerPosition;
     private final int[][] gameBoard;
+    private int PlayerNumbers;
+    private boolean GameOver;
+    private Players winner;
+    Dice dice1 = new Dice(6);
+    Dice dice2 = new Dice(6);
+    int newLocation = dice1.roll()+ dice2.roll();
 
-    public WormholeGame(Board size) {
+
+    public WormholeGame(Board size) { //get board size from Board class to create the board
+        this.players = new ArrayList<>();
         int SIZE = size.getSIZE();
         gameBoard = new int[SIZE][SIZE];
         for (int i = 0; i < SIZE; i++) {
@@ -18,37 +30,58 @@ public class WormholeGame {
         }
     }
 
-    public void addPlayer(Players player) {
+
+    public void addPlayer(Players player) { // get players from Players class and add into the list of playing
         players = new ArrayList<>();
         playerPosition = new HashMap<>();
         players.add(player);
-        playerPosition.put(player, 1);
+        playerPosition.put(player, 1); //all players start from position 1 on the board
     } //end of addPlayer method
 
-    public Players getCurrentPlayer() {
-        int playerIndex = 0;
-        Players CurrentPlayer = players.get(playerIndex % players.size());
-        playerIndex++;
+
+
+    public Players getCurrentPlayer() { // check who is the current player
+        Players FirstPlayer = players.get(0);
+        Players CurrentPlayer = players.get((players.indexOf(FirstPlayer)+1)%players.size());
         return CurrentPlayer;
     } //end of getCurrentPlayer method
 
 
     public int move(int newLocation) {
         Players CurrentPlayer = getCurrentPlayer();
-        int PlayerNewLocation = playerPosition.get(CurrentPlayer) + newLocation;
-        playerPosition.put(CurrentPlayer, PlayerNewLocation);
+//        int FinalPosition = board.getSIZE()* board.getSIZE();
+        int FinalPosition = gameBoard.length* gameBoard.length;
+        this.newLocation = newLocation;
+        int PlayerOldLocation = playerPosition.get(CurrentPlayer);
+        int PlayerNewLocation = PlayerOldLocation + newLocation;
+        if(PlayerNewLocation>=FinalPosition) {
+            PlayerNewLocation = FinalPosition;
+            playerPosition.put(CurrentPlayer, PlayerNewLocation);
+            winner = CurrentPlayer;
+        }
         return PlayerNewLocation;
     } //end of move method
 
+    public Players getWinner(){
+        return winner;
+    }
 
-    public int winner() {
-        Players CurrentPlayer = getCurrentPlayer();
-        int PlayerPosition = playerPosition.get(CurrentPlayer);
-        int BoardSize = gameBoard.length * gameBoard.length;
-        if (PlayerPosition >= BoardSize) {
-            playerPosition.put(CurrentPlayer, BoardSize);
-            return BoardSize;
-        }
-        return PlayerPosition;
+
+
+    public void play(){
+        while(setGameOver(false)){
+            int BoardSize = gameBoard.length* gameBoard.length;
+            int FinalLocation = move(newLocation);
+            if(FinalLocation>=BoardSize){
+                getWinner();
+            }
+
+        }setGameOver(true);
+
+    }
+
+    public boolean setGameOver(boolean gameOver) {
+        GameOver = gameOver;
+        return gameOver;
     }
 }
