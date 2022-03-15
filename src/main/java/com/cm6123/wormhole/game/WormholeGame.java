@@ -18,7 +18,7 @@ public class WormholeGame {
     private final Dice dice1 = new Dice(6);
     private final Dice dice2 = new Dice(6);
     protected int newLocation = dice1.roll() + dice2.roll();
-    protected int posHolesPosition;
+    protected int holePosition;
 
 
     //get board size from Board class to create the board
@@ -83,7 +83,7 @@ public class WormholeGame {
             winner = CurrentPlayer;
         }
         else {
-            PlayerNewLocation = checkPositiveWormholes(PlayerNewLocation);
+            PlayerNewLocation = checkWormholes(PlayerNewLocation);
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             return PlayerNewLocation;
             }
@@ -96,34 +96,19 @@ public class WormholeGame {
         return winner;
     }
 
-    public int checkPositiveWormholes(int newPosition) {
-        this.posHolesPosition = newPosition;
-        if (posHolesPosition == 4) {
-            posHolesPosition = 8;
+    public int checkWormholes(int newPosition) {
+        this.holePosition = newPosition;
+        if (holePosition == 4) {
+            holePosition = 8;
         }
-         if (posHolesPosition == 6) {
-             posHolesPosition = 20;
+         if (holePosition == 6) {
+             holePosition = 20;
         }
-         if (posHolesPosition == 10) {
-             posHolesPosition = 2;
+         if (holePosition == 10) {
+             holePosition = 2;
          }
-        return posHolesPosition;
+        return holePosition;
 
     }
-
-//    public int checkPositiveWormholes(int newPosition) {
-//        this.posHolesPosition = newPosition;
-//        if (posHolesPosition == 3) {
-//            posHolesPosition = 10;
-//        }
-//        if (posHolesPosition == 6) {
-//            posHolesPosition = 20;
-//        }
-//        if (posHolesPosition == 10) {
-//            posHolesPosition = 2;
-//        }
-//        return posHolesPosition;
-//
-//    }
 
 }
