@@ -3,7 +3,10 @@ package com.cm6123.wormhole.game;
 
 import com.cm6123.wormhole.dice.Dice;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 public class WormholeGame {
 
@@ -12,15 +15,16 @@ public class WormholeGame {
     private final int[][] gameBoard;
     private int playerIndex;
     private Players winner;
-    Dice dice1 = new Dice(6);
-    Dice dice2 = new Dice(6);
-    int newLocation = dice1.roll()+ dice2.roll();
-    int posHolesPosition;
+    private final Dice dice1 = new Dice(6);
+    private final Dice dice2 = new Dice(6);
+    protected int newLocation = dice1.roll() + dice2.roll();
+    protected int posHolesPosition;
 
 
-    public WormholeGame(Board size) { //get board size from Board class to create the board
+    //get board size from Board class to create the board
+    public WormholeGame(Board size) {
 
-        playerIndex=0;
+        playerIndex = 0;
         playerPosition = new HashMap<>();
         this.players = new ArrayList<>();
         int SIZE = size.getSIZE();
@@ -32,13 +36,13 @@ public class WormholeGame {
         }
     }
 
-
-    public void addPlayer(Players player) { // get players from Players class and add into the list of playing
+    // get players from Players class and add into the list of playing
+    public void addPlayer(Players player) {
         players.add(player);
         playerPosition.put(player, 1); //all players start from position 1 on the board
     } //end of addPlayer method
 
-    public Players getCurrentPlayer(){
+    public Players getCurrentPlayer() {
         Players CurrentPlayer = players.get(playerIndex);
         return CurrentPlayer;
     }
@@ -57,7 +61,7 @@ public class WormholeGame {
 //        this.newLocation = newLocation;
 //        int PlayerOldLocation = playerPosition.get(CurrentPlayer);
 //        int PlayerNewLocation = PlayerOldLocation + newLocation;
-//        if(PlayerNewLocation>=FinalPosition) {
+//        if(PlayerNewLocation >= FinalPosition) {
 //            PlayerNewLocation = FinalPosition;
 //            playerPosition.put(CurrentPlayer, PlayerNewLocation);
 //            winner = CurrentPlayer;
@@ -73,12 +77,12 @@ public class WormholeGame {
         int PlayerOldLocation = playerPosition.get(CurrentPlayer);
         int PlayerNewLocation = PlayerOldLocation + newLocation;
         getNextPlayer();
-        if(PlayerNewLocation>=FinalPosition) {
+        if(PlayerNewLocation >= FinalPosition) {
             PlayerNewLocation = FinalPosition;
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             winner = CurrentPlayer;
         }
-        else{
+        else {
             PlayerNewLocation = checkPositiveWormholes(PlayerNewLocation);
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             return PlayerNewLocation;
@@ -88,22 +92,38 @@ public class WormholeGame {
 
 
 
-    public Players getWinner(){
+    public Players getWinner() {
         return winner;
     }
 
-    public int checkPositiveWormholes(int posHolesPosition){
-        this.posHolesPosition = posHolesPosition;
-        switch(posHolesPosition){
-            case 3:
-                posHolesPosition = 10;
-                break;
-            case 6:
-                posHolesPosition = 20;
-                break;
+    public int checkPositiveWormholes(int newPosition) {
+        this.posHolesPosition = newPosition;
+        if (posHolesPosition == 4) {
+            posHolesPosition = 8;
         }
+         if (posHolesPosition == 6) {
+             posHolesPosition = 20;
+        }
+         if (posHolesPosition == 10) {
+             posHolesPosition = 2;
+         }
         return posHolesPosition;
 
     }
+
+//    public int checkPositiveWormholes(int newPosition) {
+//        this.posHolesPosition = newPosition;
+//        if (posHolesPosition == 3) {
+//            posHolesPosition = 10;
+//        }
+//        if (posHolesPosition == 6) {
+//            posHolesPosition = 20;
+//        }
+//        if (posHolesPosition == 10) {
+//            posHolesPosition = 2;
+//        }
+//        return posHolesPosition;
+//
+//    }
 
 }

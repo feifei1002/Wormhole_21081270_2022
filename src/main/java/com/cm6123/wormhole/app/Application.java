@@ -15,7 +15,9 @@ public final class Application {
     }
 
     /**
-     * main entry point.  If args provided, result is displayed and program exists. Otherwise, user is prompted for
+     * main entry point.
+     * If args provided, result is displayed and program exists.
+     * Otherwise, user is prompted for
      * input.
      *
      * @param args command line args.

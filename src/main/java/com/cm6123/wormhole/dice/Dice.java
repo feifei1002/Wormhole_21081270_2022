@@ -10,7 +10,8 @@ public class Dice {
   /**
    * Construct a dice with the given number of faces.
    *
-   * @param numberOfFaces the number of faces that the dice will have.  Dice rolls 1 to this number.
+   * @param numberOfFaces the number of faces that the dice will have.
+   *                      Dice rolls 1 to this number.
    */
   public Dice(final Integer numberOfFaces) {
     this.faces = numberOfFaces;
