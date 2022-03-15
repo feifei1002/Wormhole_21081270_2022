@@ -19,7 +19,7 @@ public class WormholeTesting {
     }
 
     @Test
-    public void ShouldBeAbleToMoveToSquare8When34AreRolledOnASize4Board(){
+    public void ShouldBeAbleToMoveToSquare8When3And4AreRolledOnASize4Board(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
@@ -51,7 +51,7 @@ public class WormholeTesting {
     }
 
     @Test
-    public void ShouldBeAbleToDeclareWinnerWhen56AreRolledOnSize3Board(){
+    public void ShouldBeAbleToDeclareWinnerWhen5And6AreRolledOnSize3Board(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
@@ -117,5 +117,73 @@ public class WormholeTesting {
 
         // Then
         assertEquals("Fei", wg.getCurrentPlayer().getName());
+    }
+
+    @Test
+    public void ShouldEndOnSquare20When6And1AreRolledOnASize5BoardWithAPositiveWormhole(){
+       //Given
+        Dice aDice1;
+        aDice1 = mock(Dice.class);
+        when(aDice1.roll()).thenReturn(4);
+
+        Dice aDice2;
+        aDice2 = mock(Dice.class);
+        when(aDice2.roll()).thenReturn(1);
+
+
+        Players p1 = new Players("Fei");
+        Players p2 = new Players("Cheng");
+
+
+        Board size5 = new Board(5);
+        size5.createBoard();
+
+        WormholeGame wg = new WormholeGame(size5);
+        wg.addPlayer(p1);
+        wg.addPlayer(p2);
+
+        //When
+        int dice1Roll = aDice1.roll();
+        int dice2Roll = aDice2.roll();
+        int position = dice1Roll+dice2Roll;
+
+        //Then
+        assertEquals(20, wg.move(position));
+        assertEquals("Cheng", wg.getCurrentPlayer().getName());
+
+    }
+
+    @Test
+    public void ShouldEndOnSquare10When5And4AreRolledOnASize5BoardWithTwoPositiveWormholes(){
+        //Given
+        Dice aDice1;
+        aDice1 = mock(Dice.class);
+        when(aDice1.roll()).thenReturn(1);
+
+        Dice aDice2;
+        aDice2 = mock(Dice.class);
+        when(aDice2.roll()).thenReturn(1);
+
+
+        Players p1 = new Players("Fei");
+        Players p2 = new Players("Cheng");
+
+
+        Board size5 = new Board(5);
+        size5.createBoard();
+
+        WormholeGame wg = new WormholeGame(size5);
+        wg.addPlayer(p1);
+        wg.addPlayer(p2);
+
+        //When
+        int dice1Roll = aDice1.roll();
+        int dice2Roll = aDice2.roll();
+        int position = dice1Roll+dice2Roll;
+
+        //Then
+        assertEquals(10, wg.move(position));
+        assertEquals("Cheng", wg.getCurrentPlayer().getName());
+
     }
 }

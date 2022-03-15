@@ -15,15 +15,12 @@ public class WormholeGame {
     Dice dice1 = new Dice(6);
     Dice dice2 = new Dice(6);
     int newLocation = dice1.roll()+ dice2.roll();
+    int posHolesPosition;
 
 
     public WormholeGame(Board size) { //get board size from Board class to create the board
 
-        //start of game playerIndex=0
-
         playerIndex=0;
-
-
         playerPosition = new HashMap<>();
         this.players = new ArrayList<>();
         int SIZE = size.getSIZE();
@@ -54,6 +51,20 @@ public class WormholeGame {
     }
 
 
+//    public int move(int newLocation) {
+//        Players CurrentPlayer = getCurrentPlayer();
+//        int FinalPosition = gameBoard.length* gameBoard.length;
+//        this.newLocation = newLocation;
+//        int PlayerOldLocation = playerPosition.get(CurrentPlayer);
+//        int PlayerNewLocation = PlayerOldLocation + newLocation;
+//        if(PlayerNewLocation>=FinalPosition) {
+//            PlayerNewLocation = FinalPosition;
+//            playerPosition.put(CurrentPlayer, PlayerNewLocation);
+//            winner = CurrentPlayer;
+//        }
+//        getNextPlayer();
+//        return PlayerNewLocation;
+//    } //end of move method
 
     public int move(int newLocation) {
         Players CurrentPlayer = getCurrentPlayer();
@@ -61,12 +72,17 @@ public class WormholeGame {
         this.newLocation = newLocation;
         int PlayerOldLocation = playerPosition.get(CurrentPlayer);
         int PlayerNewLocation = PlayerOldLocation + newLocation;
+        getNextPlayer();
         if(PlayerNewLocation>=FinalPosition) {
             PlayerNewLocation = FinalPosition;
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             winner = CurrentPlayer;
         }
-        getNextPlayer();
+        else{
+            PlayerNewLocation = checkPositiveWormholes(PlayerNewLocation);
+            playerPosition.put(CurrentPlayer, PlayerNewLocation);
+            return PlayerNewLocation;
+            }
         return PlayerNewLocation;
     } //end of move method
 
@@ -74,6 +90,20 @@ public class WormholeGame {
 
     public Players getWinner(){
         return winner;
+    }
+
+    public int checkPositiveWormholes(int posHolesPosition){
+        this.posHolesPosition = posHolesPosition;
+        switch(posHolesPosition){
+            case 3:
+                posHolesPosition = 10;
+                break;
+            case 6:
+                posHolesPosition = 20;
+                break;
+        }
+        return posHolesPosition;
+
     }
 
 }
