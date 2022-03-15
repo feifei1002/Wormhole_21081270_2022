@@ -19,13 +19,6 @@ public class WormholeTesting {
     }
 
     @Test
-    public void AllPlayersShouldBeOnSquare1(){
-        Players p1 = new Players("Fei");
-        assertEquals(1, p1.getPosition());
-    }
-
-
-    @Test
     public void ShouldBeAbleToMoveToSquare8When34AreRolledOnASize4Board(){
         //Given
         Dice aDice1;
@@ -82,40 +75,47 @@ public class WormholeTesting {
         int dice1Roll = aDice1.roll();
         int dice2Roll = aDice2.roll();
         int newPosition = dice1Roll + dice2Roll;
-        wg.play();
+//        wg.play();
 
         //Then
         assertEquals(9, wg.move(newPosition));
-//        assertEquals("Fei", wg.getWinner().getName());
+        assertEquals("Fei", wg.getWinner().getName());
     }
-//
-//    @Test
-//    public void ShouldReturnBackToPlayer1WhenAllThePlayersHaveRolled(){
-//       //Given
-//        Dice dice1 = new Dice(6);
-//        Dice dice2 = new Dice(6);
-//
-//        Players p1 = new Players("Fei");
-//        Players p2 = new Players("Cheng");
-//        Players p3 = new Players("Steven");
-//        Players p4 = new Players("Sihyun");
-//
-//        Board size5 = new Board(5);
-//        size5.createBoard();
-//
-//        WormholeGame wg = new WormholeGame(size5, 4);
-//        wg.addPlayer(p1);
-//        wg.addPlayer(p2);
-//        wg.addPlayer(p3);
-//        wg.addPlayer(p4);
-//
-//        // When
-//
-//
-//        // Then
-////        assertTrue(p1.rolled()&&p2.rolled()&&p3.rolled()&&p4.rolled());
-////        assertEquals("Fei", wg.rolled());
-//    }
 
+    @Test
+    public void ShouldReturnBackToPlayer1WhenAllThePlayersHaveRolled(){
+       //Given
+        Dice dice1 = new Dice(6);
+        Dice dice2 = new Dice(6);
 
+        Players p1 = new Players("Fei");
+        Players p2 = new Players("Cheng");
+        Players p3 = new Players("Steven");
+        Players p4 = new Players("Sihyun");
+
+        Board size5 = new Board(5);
+        size5.createBoard();
+
+        WormholeGame wg = new WormholeGame(size5);
+        wg.addPlayer(p1);
+        wg.addPlayer(p2);
+        wg.addPlayer(p3);
+        wg.addPlayer(p4);
+
+        // When
+        wg.getCurrentPlayer();
+        wg.move(dice1.roll()+dice2.roll());
+
+        wg.getCurrentPlayer();
+        wg.move(dice1.roll()+dice2.roll());
+
+        wg.getCurrentPlayer();
+        wg.move(dice1.roll()+dice2.roll());
+
+        wg.getCurrentPlayer();
+        wg.move(dice1.roll()+dice2.roll());
+
+        // Then
+        assertEquals("Fei", wg.getCurrentPlayer().getName());
+    }
 }

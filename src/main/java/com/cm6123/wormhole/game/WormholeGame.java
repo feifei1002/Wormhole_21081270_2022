@@ -7,11 +7,10 @@ import java.util.*;
 
 public class WormholeGame {
 
-    private List<Players> players;
-    private Map<Players, Integer> playerPosition;
+    private final List<Players> players;
+    private final Map<Players, Integer> playerPosition;
     private final int[][] gameBoard;
-    private int PlayerIndex;
-    private boolean GameOver;
+    private int playerIndex;
     private Players winner;
     Dice dice1 = new Dice(6);
     Dice dice2 = new Dice(6);
@@ -19,6 +18,13 @@ public class WormholeGame {
 
 
     public WormholeGame(Board size) { //get board size from Board class to create the board
+
+        //start of game playerIndex=0
+
+        playerIndex=0;
+
+
+        playerPosition = new HashMap<>();
         this.players = new ArrayList<>();
         int SIZE = size.getSIZE();
         gameBoard = new int[SIZE][SIZE];
@@ -31,24 +37,22 @@ public class WormholeGame {
 
 
     public void addPlayer(Players player) { // get players from Players class and add into the list of playing
-        players = new ArrayList<>();
-        playerPosition = new HashMap<>();
         players.add(player);
         playerPosition.put(player, 1); //all players start from position 1 on the board
     } //end of addPlayer method
 
+    public Players getCurrentPlayer(){
+        Players CurrentPlayer = players.get(playerIndex);
+        return CurrentPlayer;
+    }
 
 
-    public Players getCurrentPlayer() { // check who is the current player
-        PlayerIndex = 0;
-        Players FirstPlayer = players.get(0);
-        if(PlayerIndex>=0) {
-            Players CurrentPlayer = players.get((PlayerIndex + 1) % players.size());
-            PlayerIndex++;
-            return CurrentPlayer;
-            }
-        return FirstPlayer;
-    } //end of getCurrentPlayer method
+    public void getNextPlayer() { //make this return void and just adjust the index.
+
+        playerIndex = ((playerIndex+1) % players.size());
+
+    }
+
 
 
     public int move(int newLocation) {
@@ -62,29 +66,14 @@ public class WormholeGame {
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             winner = CurrentPlayer;
         }
+        getNextPlayer();
         return PlayerNewLocation;
     } //end of move method
+
+
 
     public Players getWinner(){
         return winner;
     }
 
-
-
-    public void play(){
-        while(setGameOver(false)){
-            int BoardSize = gameBoard.length* gameBoard.length;
-            int FinalLocation = move(newLocation);
-            if(FinalLocation>=BoardSize){
-                getWinner();
-            }
-
-        }setGameOver(true);
-
-    }
-
-    public boolean setGameOver(boolean gameOver) {
-        GameOver = gameOver;
-        return gameOver;
-    }
 }
