@@ -5,7 +5,7 @@ public class Players {
     private final String name;
 
 
-    public Players(String PlayerName) {
+    public Players(final String PlayerName) {
         name = PlayerName;
     } //end of constructor
 

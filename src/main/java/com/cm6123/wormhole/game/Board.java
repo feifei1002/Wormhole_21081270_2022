@@ -7,7 +7,7 @@ public class Board {
     private final int Size;
 
 
-    public Board(int size) {
+    public Board(final int size) {
         Size = size;
         BoardSize = new int[Size][Size];
         for (int i = 0; i < Size; i++) {

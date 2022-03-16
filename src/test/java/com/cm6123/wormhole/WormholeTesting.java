@@ -12,6 +12,7 @@ import static org.mockito.Mockito.when;
 
 public class WormholeTesting {
 
+    //extra test
    @Test
     public void ShouldBeAbleToGetPlayerNames(){
         Players p1 = new Players("Fei");
@@ -153,8 +154,9 @@ public class WormholeTesting {
 
     }
 
+
     @Test
-    public void ShouldEndOnSquare8When1And2AreRolledOnASize5BoardWithTwoPositiveWormholes(){
+    public void ShouldEndOnSquare8When1And1AreRolledOnASize5BoardWithTwoPositiveWormholes(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
@@ -162,7 +164,7 @@ public class WormholeTesting {
 
         Dice aDice2;
         aDice2 = mock(Dice.class);
-        when(aDice2.roll()).thenReturn(2);
+        when(aDice2.roll()).thenReturn(1);
 
 
         Players p1 = new Players("Fei");
@@ -217,6 +219,40 @@ public class WormholeTesting {
 
         //Then
         assertEquals(2, wg.move(position));
+        assertEquals("Cheng", wg.getCurrentPlayer().getName());
+
+    }
+
+    @Test
+    public void ShouldEndOnSquare13When6And6AreRolledOnASize5BoardWithANegativeWormhole(){
+        //Given
+        Dice aDice1;
+        aDice1 = mock(Dice.class);
+        when(aDice1.roll()).thenReturn(6);
+
+        Dice aDice2;
+        aDice2 = mock(Dice.class);
+        when(aDice2.roll()).thenReturn(6);
+
+
+        Players p1 = new Players("Fei");
+        Players p2 = new Players("Cheng");
+
+
+        Board size5 = new Board(5);
+        size5.createBoard();
+
+        WormholeGame wg = new WormholeGame(size5);
+        wg.addPlayer(p1);
+        wg.addPlayer(p2);
+
+        //When
+        int dice1Roll = aDice1.roll();
+        int dice2Roll = aDice2.roll();
+        int position = dice1Roll+dice2Roll;
+
+        //Then
+        assertEquals(3, wg.move(position));
         assertEquals("Cheng", wg.getCurrentPlayer().getName());
 
     }

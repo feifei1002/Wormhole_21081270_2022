@@ -17,12 +17,13 @@ public class WormholeGame {
     private Players winner;
     private final Dice dice1 = new Dice(6);
     private final Dice dice2 = new Dice(6);
-    protected int newLocation = dice1.roll() + dice2.roll();
-    protected int holePosition;
+    int newLocation = dice1.roll() + dice2.roll();
+    private int holePosition;
+    private int negHolePosition;
 
 
     //get board size from Board class to create the board
-    public WormholeGame(Board size) {
+    public WormholeGame(final Board size) {
 
         playerIndex = 0;
         playerPosition = new HashMap<>();
@@ -37,7 +38,7 @@ public class WormholeGame {
     }
 
     // get players from Players class and add into the list of playing
-    public void addPlayer(Players player) {
+    public void addPlayer(final Players player) {
         players.add(player);
         playerPosition.put(player, 1); //all players start from position 1 on the board
     } //end of addPlayer method
@@ -50,27 +51,12 @@ public class WormholeGame {
 
     public void getNextPlayer() { //make this return void and just adjust the index.
 
-        playerIndex = ((playerIndex+1) % players.size());
+        playerIndex = ((playerIndex + 1) % players.size());
 
     }
 
 
-//    public int move(int newLocation) {
-//        Players CurrentPlayer = getCurrentPlayer();
-//        int FinalPosition = gameBoard.length* gameBoard.length;
-//        this.newLocation = newLocation;
-//        int PlayerOldLocation = playerPosition.get(CurrentPlayer);
-//        int PlayerNewLocation = PlayerOldLocation + newLocation;
-//        if(PlayerNewLocation >= FinalPosition) {
-//            PlayerNewLocation = FinalPosition;
-//            playerPosition.put(CurrentPlayer, PlayerNewLocation);
-//            winner = CurrentPlayer;
-//        }
-//        getNextPlayer();
-//        return PlayerNewLocation;
-//    } //end of move method
-
-    public int move(int newLocation) {
+        public int move(final int newLocation) {
         Players CurrentPlayer = getCurrentPlayer();
         int FinalPosition = gameBoard.length* gameBoard.length;
         this.newLocation = newLocation;
@@ -81,8 +67,7 @@ public class WormholeGame {
             PlayerNewLocation = FinalPosition;
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             winner = CurrentPlayer;
-        }
-        else {
+        } else {
             PlayerNewLocation = checkWormholes(PlayerNewLocation);
             playerPosition.put(CurrentPlayer, PlayerNewLocation);
             return PlayerNewLocation;
@@ -91,24 +76,27 @@ public class WormholeGame {
     } //end of move method
 
 
-
     public Players getWinner() {
         return winner;
     }
 
-    public int checkWormholes(int newPosition) {
+    public int checkWormholes(final int newPosition) {
         this.holePosition = newPosition;
-        if (holePosition == 4) {
+        if (holePosition == 3) {
             holePosition = 8;
         }
-         if (holePosition == 6) {
-             holePosition = 20;
+        if (holePosition == 6) {
+            holePosition = 20;
         }
-         if (holePosition == 10) {
-             holePosition = 2;
-         }
+        if (holePosition == 10) {
+            holePosition = 2;
+        }
+        if (holePosition == 13) {
+            holePosition = 3;
+        }
         return holePosition;
 
     }
+
 
 }
