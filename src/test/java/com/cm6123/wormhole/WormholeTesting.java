@@ -224,7 +224,7 @@ public class WormholeTesting {
     }
 
     @Test
-    public void ShouldEndOnSquare13When6And6AreRolledOnASize5BoardWithANegativeWormhole(){
+    public void ShouldEndOnSquare3When6And6AreRolledOnASize5BoardWithANegativeWormhole(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);

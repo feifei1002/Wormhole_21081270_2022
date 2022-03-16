@@ -10,76 +10,130 @@ import java.util.ArrayList;
 
 public class WormholeGame {
 
+    /**
+     * A list to store the players that are playing.
+     */
     private final List<Players> players;
+    /**
+     * A map to store the position that each player is on.
+     */
     private final Map<Players, Integer> playerPosition;
+    /**
+     * get the actual board for the game.
+     */
     private final int[][] gameBoard;
+    /**
+     * Uses playerIndex to keep track of the current player and the next player.
+     */
     private int playerIndex;
+    /**
+     * the winner of the entire game.
+     */
     private Players winner;
+    /**
+     * first dice in the game.
+     */
     private final Dice dice1 = new Dice(6);
+    /**
+     * second dice in the game.
+     */
     private final Dice dice2 = new Dice(6);
-    int newLocation = dice1.roll() + dice2.roll();
+    /**
+     * the value of two dices added up together.
+     */
+    private int newLocation = dice1.roll() + dice2.roll();
+    /**
+     * the position of positive and negative wormholes.
+     */
     private int holePosition;
-    private int negHolePosition;
 
 
     //get board size from Board class to create the board
+
+    /**
+     * construct the game by getting the size of the board.
+     * @param size the size of the board.
+     */
     public WormholeGame(final Board size) {
 
         playerIndex = 0;
         playerPosition = new HashMap<>();
         this.players = new ArrayList<>();
-        int SIZE = size.getSIZE();
-        gameBoard = new int[SIZE][SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                gameBoard[i][j] = i * SIZE + j + 1;
+        int boardSize = size.getSIZE();
+        gameBoard = new int[boardSize][boardSize];
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                gameBoard[i][j] = i * boardSize + j + 1;
             }
         }
     }
 
-    // get players from Players class and add into the list of playing
+    /**
+     * add the players for the current game into the list.
+     * @param player add player into the list.
+     */
     public void addPlayer(final Players player) {
         players.add(player);
         playerPosition.put(player, 1); //all players start from position 1 on the board
     } //end of addPlayer method
 
+    /**
+     * get the current player that is moving.
+     * @return currentPlayer
+     */
     public Players getCurrentPlayer() {
-        Players CurrentPlayer = players.get(playerIndex);
-        return CurrentPlayer;
+        Players currentPlayer = players.get(playerIndex);
+        return currentPlayer;
     }
 
-
+    /**
+     * get the next player that will be moving.
+     */
     public void getNextPlayer() { //make this return void and just adjust the index.
 
         playerIndex = ((playerIndex + 1) % players.size());
 
     }
 
-
+    /**
+     * player move in the game.
+     * @param newLocation the value of the dices after rolling
+     * @return PlayerNewLocation
+     * Player new location after moving.
+     */
         public int move(final int newLocation) {
-        Players CurrentPlayer = getCurrentPlayer();
-        int FinalPosition = gameBoard.length* gameBoard.length;
+        Players currentPlayer = getCurrentPlayer();
+        int finalPosition = gameBoard.length* gameBoard.length;
         this.newLocation = newLocation;
-        int PlayerOldLocation = playerPosition.get(CurrentPlayer);
-        int PlayerNewLocation = PlayerOldLocation + newLocation;
+        int playerOldLocation = playerPosition.get(currentPlayer);
+        int playerNewLocation = playerOldLocation + newLocation;
         getNextPlayer();
-        if(PlayerNewLocation >= FinalPosition) {
-            PlayerNewLocation = FinalPosition;
-            playerPosition.put(CurrentPlayer, PlayerNewLocation);
-            winner = CurrentPlayer;
+        if(playerNewLocation >= finalPosition) {
+            playerNewLocation = finalPosition;
+            playerPosition.put(currentPlayer, playerNewLocation);
+            winner = currentPlayer;
         } else {
-            PlayerNewLocation = checkWormholes(PlayerNewLocation);
-            playerPosition.put(CurrentPlayer, PlayerNewLocation);
-            return PlayerNewLocation;
+            playerNewLocation = checkWormholes(playerNewLocation);
+            playerPosition.put(currentPlayer, playerNewLocation);
+            return playerNewLocation;
             }
-        return PlayerNewLocation;
+        return playerNewLocation;
     } //end of move method
 
 
+    /**
+     * get the final winner of the game.
+     * @return winner.
+     */
     public Players getWinner() {
         return winner;
     }
 
+    /**
+     * list of positive and negative wormholes.
+     * @param newPosition the position that the player end up on after moving.
+     * @return the new position of the player if they reach a wormhole.
+     */
     public int checkWormholes(final int newPosition) {
         this.holePosition = newPosition;
         if (holePosition == 3) {
