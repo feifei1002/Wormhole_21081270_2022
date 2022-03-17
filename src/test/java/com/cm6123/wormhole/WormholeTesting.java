@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 public class WormholeTesting {
 
-    //extra test
+    @DisplayName("extra test")
    @Test
     public void ShouldBeAbleToGetPlayerNames(){
         Players p1 = new Players("Fei");
