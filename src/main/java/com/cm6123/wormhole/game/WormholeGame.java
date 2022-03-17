@@ -107,7 +107,7 @@ public class WormholeGame {
         this.newLocation = newLocation;
         int playerOldLocation = playerPosition.get(currentPlayer);
         int playerNewLocation = playerOldLocation + newLocation;
-        getNextPlayer();
+//        getNextPlayer();
         if(playerNewLocation >= finalPosition) {
             playerNewLocation = finalPosition;
             playerPosition.put(currentPlayer, playerNewLocation);
@@ -117,6 +117,7 @@ public class WormholeGame {
             playerPosition.put(currentPlayer, playerNewLocation);
             return playerNewLocation;
             }
+//            getNextPlayer();
         return playerNewLocation;
     } //end of move method
 
