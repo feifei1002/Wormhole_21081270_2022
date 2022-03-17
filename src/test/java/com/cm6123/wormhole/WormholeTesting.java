@@ -317,10 +317,9 @@ public class WormholeTesting {
         wg.getNextPlayer();
 
         wg.getCurrentPlayer();
-        wg.move(aDice5.roll()+ aDice6.roll());
 
         //Then
-        assertEquals(25,wg.move(aDice1.roll()+aDice2.roll()+aDice5.roll()+aDice6.roll()));
+        assertEquals(25,wg.move(aDice5.roll()+aDice6.roll()));
         assertEquals("Fei", wg.getWinner().getName());
     }
 
