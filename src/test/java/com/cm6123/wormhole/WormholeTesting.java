@@ -4,6 +4,7 @@ import com.cm6123.wormhole.dice.Dice;
 import com.cm6123.wormhole.game.Board;
 import com.cm6123.wormhole.game.Players;
 import com.cm6123.wormhole.game.WormholeGame;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,6 +20,7 @@ public class WormholeTesting {
         assertEquals("Fei", p1.getName());
     }
 
+    @DisplayName("Test 1")
     @Test
     public void ShouldBeAbleToMoveToSquare8When3And4AreRolledOnASize4Board(){
         //Given
@@ -52,6 +54,7 @@ public class WormholeTesting {
 
     }
 
+    @DisplayName("Test 2")
     @Test
     public void ShouldBeAbleToDeclareWinnerWhen5And6AreRolledOnSize3Board(){
         //Given
@@ -84,6 +87,7 @@ public class WormholeTesting {
         assertEquals("Fei", wg.getWinner().getName());
     }
 
+    @DisplayName("Test 3")
     @Test
     public void ShouldReturnBackToPlayer1WhenAllThePlayersHaveRolled(){
        //Given
@@ -125,6 +129,7 @@ public class WormholeTesting {
         assertEquals("Fei", wg.getCurrentPlayer().getName());
     }
 
+    @DisplayName("Test 4")
     @Test
     public void ShouldEndOnSquare20When6And1AreRolledOnASize5BoardWithAPositiveWormhole(){
        //Given
@@ -160,7 +165,7 @@ public class WormholeTesting {
 
     }
 
-
+    @DisplayName("Test 5")
     @Test
     public void ShouldEndOnSquare8When1And1AreRolledOnASize5BoardWithTwoPositiveWormholes(){
         //Given
@@ -196,6 +201,7 @@ public class WormholeTesting {
 
     }
 
+    @DisplayName("Test 6")
     @Test
     public void ShouldEndOnSquare2When6And3AreRolledOnASize5BoardWithANegativeWormhole(){
         //Given
@@ -232,6 +238,7 @@ public class WormholeTesting {
 
     }
 
+    @DisplayName("Test 7")
     @Test
     public void ShouldEndOnSquare3When6And6AreRolledOnASize5BoardWithANegativeWormhole(){
         //Given
@@ -268,6 +275,7 @@ public class WormholeTesting {
 
     }
 
+    @DisplayName("Test 8")
     @Test
     public void ShouldBeAbleToDeclareWinnerWhen2PlayersRollDiceOnASize5BoardWithAPositiveWormhole(){
         //Given
@@ -322,5 +330,7 @@ public class WormholeTesting {
         assertEquals(25,wg.move(aDice5.roll()+aDice6.roll()));
         assertEquals("Fei", wg.getWinner().getName());
     }
+
+
 
 }
