@@ -301,7 +301,7 @@ public class WormholeTesting {
 
         Dice aDice6;
         aDice6 = mock(Dice.class);
-        when(aDice6.roll()).thenReturn(6);
+        when(aDice6.roll()).thenReturn(5);
 
 
         Players p1 = new Players("Fei");
@@ -331,6 +331,59 @@ public class WormholeTesting {
         assertEquals("Fei", wg.getWinner().getName());
     }
 
+    @DisplayName("Test 9")
+    @Test
+    public void ShouldBeAbleToDeclareWinnerWhenBothPlayersRolledDoubleOnASize5BoardWithAPositiveWormhole(){
+        //Given
+        Dice aDice1;
+        aDice1 = mock(Dice.class);
+        when(aDice1.roll()).thenReturn(2);
+
+        Dice aDice2;
+        aDice2 = mock(Dice.class);
+        when(aDice2.roll()).thenReturn(3);
+
+        Dice aDice3;
+        aDice3 = mock(Dice.class);
+        when(aDice3.roll()).thenReturn(1);
+
+        Dice aDice4;
+        aDice4 = mock(Dice.class);
+        when(aDice4.roll()).thenReturn(1);
+
+        Dice aDice5;
+        aDice5 = mock(Dice.class);
+        when(aDice5.roll()).thenReturn(6);
+
+        Dice aDice6;
+        aDice6 = mock(Dice.class);
+        when(aDice6.roll()).thenReturn(6);
 
 
+        Players p1 = new Players("Fei");
+        Players p2 = new Players("Cheng");
+
+
+        Board size5 = new Board(5);
+        size5.createBoard();
+
+        WormholeGame wg = new WormholeGame(size5);
+        wg.addPlayer(p1);
+        wg.addPlayer(p2);
+
+        //When
+        wg.getCurrentPlayer();
+        wg.move(aDice1.roll()+aDice2.roll());
+        wg.getNextPlayer();
+
+        wg.getCurrentPlayer();
+        wg.move(aDice3.roll()+aDice4.roll());
+        wg.getNextPlayer();
+
+        wg.getCurrentPlayer();
+
+        //Then
+        assertEquals(25,wg.move(aDice5.roll()+aDice6.roll()));
+        assertEquals("Fei", wg.getWinner().getName());
+    }
 }
