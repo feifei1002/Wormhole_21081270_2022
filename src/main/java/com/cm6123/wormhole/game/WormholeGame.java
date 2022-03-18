@@ -121,6 +121,13 @@ public class WormholeGame {
         return playerNewLocation;
     } //end of move method
 
+    public List<Players> getPlayers() {
+        return players;
+    }
+
+    public Map<Players, Integer> getPlayerPosition() {
+        return playerPosition;
+    }
 
     /**
      * get the final winner of the game.

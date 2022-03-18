@@ -1,9 +1,11 @@
 package com.cm6123.wormhole.app;
 
+import com.cm6123.wormhole.game.Board;
+import com.cm6123.wormhole.game.Players;
+import com.cm6123.wormhole.game.WormholeGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -34,8 +36,9 @@ public final class Application {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Please enter the width dimension that you want to play the game (5-10)");
-        try {
+
             int boardSize = sc.nextInt();
+            Board gameBoard = new Board(boardSize);
 
             if (boardSize >= 3 && boardSize <= 10) {
                 switch (boardSize) {
@@ -68,10 +71,9 @@ public final class Application {
                 System.out.println("Sorry, please enter the correct board size");
                 return;
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Sorry, please enter an integer");
-        }
         logger.info("No user input was entered");
+
+            WormholeGame wg = new WormholeGame(gameBoard);
 
         System.out.println("Please enter the number of player (2-6)");
         int NoOfPlayer = sc.nextInt();
@@ -79,11 +81,22 @@ public final class Application {
             for (int i = 0; i<NoOfPlayer; i++){
                 System.out.println("Please enter player "+(i+1)+"'s name");
                 String name = sc.next();
+                Players player = new Players(name);
+                wg.addPlayer(player);
             }
-        }else{
+        }else {
             System.out.println("Sorry, you didn't enter the correct number of player.");
         }
 
+        for (int i=0; i< wg.getPlayers().size(); i++){
+            System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
+            System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
+            String diceType = sc.nextLine();
+//            wg.getCurrentPlayer();
+//            wg.move(4);
+//            System.out.println(wg.getCurrentPlayer().getName()+" is on position "+wg.getPlayerPosition().get(wg.getPlayers().get(i)));
+//            wg.getNextPlayer();
+        }
        logger.info("Application closing");
     }
 
