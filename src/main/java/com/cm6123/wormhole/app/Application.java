@@ -90,14 +90,21 @@ public final class Application {
         }
 
         for (int i=0; i< wg.getPlayers().size(); i++){
+            System.out.println(wg.getPlayers().get(i).getName()+" is on position "+wg.getPlayerPosition().get(wg.getPlayers().get(i)));
             System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
             System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
             String diceType = sc.nextLine();
             if(diceType.equals("Y")){
                 System.out.println("Please enter the value on your first dice");
                 int dice1Roll = sc.nextInt();
+                if(dice1Roll<= 0 && dice1Roll > 6){
+                    System.out.println("You entered an invalid number, please try again");
+                }
                 System.out.println("Please enter the value on your second dice");
                 int dice2Roll = sc.nextInt();
+                if(dice2Roll<= 0 && dice2Roll > 6){
+                    System.out.println("You entered an invalid number, please try again");
+                }
                 System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
 
             }else if(diceType.equals("N")){
