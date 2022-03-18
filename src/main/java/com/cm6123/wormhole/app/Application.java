@@ -95,10 +95,10 @@ public final class Application {
             String diceType = sc.nextLine();
             if(diceType.equals("Y")){
                 System.out.println("Please enter the value on your first dice");
-                int dice1 = sc.nextInt();
+                int dice1Roll = sc.nextInt();
                 System.out.println("Please enter the value on your second dice");
-                int dice2 = sc.nextInt();
-                System.out.println("Your first dice rolled a "+dice1+" and your second dice rolled a "+dice2);
+                int dice2Roll = sc.nextInt();
+                System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
 
             }else if(diceType.equals("N")){
                 Dice dice1 = new Dice(6);
@@ -114,7 +114,10 @@ public final class Application {
 //            System.out.println(wg.getCurrentPlayer().getName()+" is on position "+wg.getPlayerPosition().get(wg.getPlayers().get(i)));
 //            wg.getNextPlayer();
         }
-       logger.info("Application closing");
+        System.out.println("Let's play!");
+        logger.info("Application closing");
+
+
     }
 
 
