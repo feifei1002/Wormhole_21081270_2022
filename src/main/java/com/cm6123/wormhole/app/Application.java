@@ -67,6 +67,8 @@ public final class Application {
                     case 10:
                         System.out.println("Thank you! Your board has 100 squares.");
                         break;
+                    default:
+                        return;
                 }
             }else{
                 System.out.println("Sorry, please enter the correct board size");
@@ -77,9 +79,9 @@ public final class Application {
             WormholeGame wg = new WormholeGame(gameBoard);
 
         System.out.println("Please enter the number of player (2-6)");
-        int NoOfPlayer = sc.nextInt();
-        if(NoOfPlayer >= 2 && NoOfPlayer <= 6){
-            for (int i = 0; i<NoOfPlayer; i++){
+        int noOfPlayer = sc.nextInt();
+        if(noOfPlayer >= 2 && noOfPlayer <= 6){
+            for (int i = 0; i<noOfPlayer; i++){
                 System.out.println("Please enter player "+(i+1)+"'s name");
                 String name = sc.next();
                 Players player = new Players(name);

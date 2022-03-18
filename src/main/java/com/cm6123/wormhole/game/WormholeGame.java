@@ -121,10 +121,18 @@ public class WormholeGame {
         return playerNewLocation;
     } //end of move method
 
+    /**
+     * to be able to get the player name from the list of player.
+     * @return players return the player's list.
+     */
     public List<Players> getPlayers() {
         return players;
     }
 
+    /**
+     * to be able to get the player's position from the application file.
+     * @return playerPosition return the hashmap that contains player name and player position as a set of key-value pair.
+     */
     public Map<Players, Integer> getPlayerPosition() {
         return playerPosition;
     }
