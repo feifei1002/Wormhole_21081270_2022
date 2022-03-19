@@ -97,7 +97,7 @@ public final class Application {
         for (int i=0; i< wg.getPlayers().size(); i++){
             System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
             System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
-            String diceType = sc.nextLine();
+            String diceType = sc.next();
             
             if(diceType.equals("Y")){
                 System.out.println("Please enter the value on your first dice");
@@ -118,7 +118,7 @@ public final class Application {
                 System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
                 steps = dice1Roll+dice2Roll;
 
-            }else if(diceType.equals("N")){
+            } else if(diceType.equals("N")){
                 Dice dice1 = new Dice(6);
                 Dice dice2 = new Dice(6);
                 int dice1Roll = dice1.roll();
@@ -131,8 +131,11 @@ public final class Application {
 
 
             System.out.println(wg.getPlayers().get(i).getName()+" is on square "+wg.move(steps)+"!");
+            System.out.println();
             wg.getNextPlayer();
         }
+
+
         logger.info("Application closing");
 
 
