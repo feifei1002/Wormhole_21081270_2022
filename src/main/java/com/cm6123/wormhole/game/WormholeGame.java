@@ -41,7 +41,7 @@ public class WormholeGame {
     /**
      * the value of two dices added up together.
      */
-    private int newLocation = dice1.roll() + dice2.roll();
+    private int newLocation;
     /**
      * the position of positive and negative wormholes.
      */

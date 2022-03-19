@@ -90,40 +90,49 @@ public final class Application {
         }else {
             System.out.println("Sorry, you didn't enter the correct number of player.");
         }
+        System.out.println("Let's play!");
+        
+        int steps = 0;
 
         for (int i=0; i< wg.getPlayers().size(); i++){
-            System.out.println(wg.getPlayers().get(i).getName()+" is on position "+wg.getPlayerPosition().get(wg.getPlayers().get(i)));
             System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
             System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
             String diceType = sc.nextLine();
+            
             if(diceType.equals("Y")){
                 System.out.println("Please enter the value on your first dice");
                 int dice1Roll = sc.nextInt();
-                if(dice1Roll<= 0 && dice1Roll > 6){
-                    System.out.println("You entered an invalid number, please try again");
+
+                if(dice1Roll<= 0 || dice1Roll > 6){
+                    System.out.println("Your number is out of bound, please try again");
+                    return;
                 }
+
                 System.out.println("Please enter the value on your second dice");
                 int dice2Roll = sc.nextInt();
-                if(dice2Roll<= 0 && dice2Roll > 6){
-                    System.out.println("You entered an invalid number, please try again");
+
+                if(dice2Roll<= 0 || dice2Roll > 6){
+                    System.out.println("Your number is out of bound, please try again");
+                    return;
                 }
                 System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
+                steps = dice1Roll+dice2Roll;
 
             }else if(diceType.equals("N")){
                 Dice dice1 = new Dice(6);
                 Dice dice2 = new Dice(6);
                 int dice1Roll = dice1.roll();
                 int dice2Roll = dice2.roll();
-                System.out.println("Your first dice rolled a "+dice1Roll+" an your second dice rolled a "+dice2Roll);
+                System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
+                steps = dice1Roll+dice2Roll;
             }else{
                 System.out.println("Please only enter 'Y' or 'N'!");
             }
-//            wg.getCurrentPlayer();
-//            wg.move(4);
-//            System.out.println(wg.getCurrentPlayer().getName()+" is on position "+wg.getPlayerPosition().get(wg.getPlayers().get(i)));
-//            wg.getNextPlayer();
+
+
+            System.out.println(wg.getPlayers().get(i).getName()+" is on square "+wg.move(steps)+"!");
+            wg.getNextPlayer();
         }
-        System.out.println("Let's play!");
         logger.info("Application closing");
 
 
