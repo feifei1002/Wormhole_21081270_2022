@@ -141,6 +141,14 @@ public class WormholeGame {
         return winner;
     }
 
+    public boolean isGameOver(){
+        if(playerPosition.containsKey(gameBoard.length * gameBoard.length)){
+         return true;
+        }
+        else{
+            return false;
+        }
+    }
     /**
      * list of positive and negative wormholes.
      *

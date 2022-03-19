@@ -91,46 +91,57 @@ public final class Application {
             System.out.println("Sorry, you didn't enter the correct number of player.");
         }
         System.out.println("Let's play!");
+
         int steps = 0;
 
-        for (int i=0; i< wg.getPlayers().size(); i++){
-            System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
-            System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
-            String diceType = sc.next();
-            if(diceType.equals("Y")){
-                System.out.println("Please enter the value on your first dice");
-                int dice1Roll = sc.nextInt();
+        while(!wg.isGameOver()) {
+            for (int i = 0; i < wg.getPlayers().size(); i++) {
+                System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
+                System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
+                String diceType = sc.next();
+                if (diceType.equals("Y")) {
+                    System.out.println("Please enter the value on your first dice");
+                    int dice1Roll = sc.nextInt();
 
-                if(dice1Roll<= 0 || dice1Roll > 6){
-                    System.out.println("Your number is out of bound, please try again");
-                    return;
+                    if (dice1Roll <= 0 || dice1Roll > 6) {
+                        System.out.println("Your number is out of bound, please try again");
+                        return;
+                    }
+
+                    System.out.println("Please enter the value on your second dice");
+                    int dice2Roll = sc.nextInt();
+
+                    if (dice2Roll <= 0 || dice2Roll > 6) {
+                        System.out.println("Your number is out of bound, please try again");
+                        return;
+                    }
+                    System.out.println("Your first dice rolled a " + dice1Roll + " and your second dice rolled a " + dice2Roll);
+                    steps = dice1Roll + dice2Roll;
+
+                } else if (diceType.equals("N")) {
+                    Dice dice1 = new Dice(6);
+                    Dice dice2 = new Dice(6);
+                    int dice1Roll = dice1.roll();
+                    int dice2Roll = dice2.roll();
+                    System.out.println("Your first dice rolled a " + dice1Roll + " and your second dice rolled a " + dice2Roll);
+                    steps = dice1Roll + dice2Roll;
+                } else {
+                    System.out.println("Please only enter 'Y' or 'N'!");
                 }
 
-                System.out.println("Please enter the value on your second dice");
-                int dice2Roll = sc.nextInt();
 
-                if(dice2Roll<= 0 || dice2Roll > 6){
-                    System.out.println("Your number is out of bound, please try again");
-                    return;
+                System.out.println(wg.getPlayers().get(i).getName() + " is on square " + wg.move(steps) + "!");
+                if(wg.move(steps) == gameBoard.getSIZE()){
+                    System.out.println(wg.getWinner().getName() + "is the winner!");
+                    wg.isGameOver();
+                    break;
                 }
-                System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
-                steps = dice1Roll+dice2Roll;
-
-            } else if(diceType.equals("N")){
-                Dice dice1 = new Dice(6);
-                Dice dice2 = new Dice(6);
-                int dice1Roll = dice1.roll();
-                int dice2Roll = dice2.roll();
-                System.out.println("Your first dice rolled a "+dice1Roll+" and your second dice rolled a "+dice2Roll);
-                steps = dice1Roll+dice2Roll;
-            }else{
-                System.out.println("Please only enter 'Y' or 'N'!");
+                System.out.println();
+                wg.getNextPlayer();
             }
-
-
-            System.out.println(wg.getPlayers().get(i).getName()+" is on square "+wg.move(steps)+"!");
-            System.out.println();
-            wg.getNextPlayer();
+//            wg.getWinner();
+//            wg.isGameOver();
+//            wg.getWinner();
         }
 
 
