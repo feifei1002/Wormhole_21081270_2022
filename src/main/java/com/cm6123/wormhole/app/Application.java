@@ -91,14 +91,12 @@ public final class Application {
             System.out.println("Sorry, you didn't enter the correct number of player.");
         }
         System.out.println("Let's play!");
-        
         int steps = 0;
 
         for (int i=0; i< wg.getPlayers().size(); i++){
             System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
             System.out.println("Type 'Y' to roll yourself or 'N' to let me do it");
             String diceType = sc.next();
-            
             if(diceType.equals("Y")){
                 System.out.println("Please enter the value on your first dice");
                 int dice1Roll = sc.nextInt();

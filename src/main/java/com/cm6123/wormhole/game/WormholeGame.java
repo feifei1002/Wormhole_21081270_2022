@@ -1,8 +1,5 @@
 package com.cm6123.wormhole.game;
 
-
-import com.cm6123.wormhole.dice.Dice;
-
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -31,14 +28,6 @@ public class WormholeGame {
      */
     private Players winner;
     /**
-     * first dice in the game.
-     */
-    private final Dice dice1 = new Dice(6);
-    /**
-     * second dice in the game.
-     */
-    private final Dice dice2 = new Dice(6);
-    /**
      * the value of two dices added up together.
      */
     private int newLocation;
@@ -52,6 +41,7 @@ public class WormholeGame {
 
     /**
      * construct the game by getting the size of the board.
+     *
      * @param size the size of the board.
      */
     public WormholeGame(final Board size) {
@@ -70,6 +60,7 @@ public class WormholeGame {
 
     /**
      * add the players for the current game into the list.
+     *
      * @param player add player into the list.
      */
     public void addPlayer(final Players player) {
@@ -79,6 +70,7 @@ public class WormholeGame {
 
     /**
      * get the current player that is moving.
+     *
      * @return currentPlayer
      */
     public Players getCurrentPlayer() {
@@ -97,18 +89,19 @@ public class WormholeGame {
 
     /**
      * player move in the game.
+     *
      * @param newLocation the value of the dices after rolling
      * @return PlayerNewLocation
      * Player new location after moving.
      */
-        public int move(final int newLocation) {
+    public int move(final int newLocation) {
         Players currentPlayer = getCurrentPlayer();
-        int finalPosition = gameBoard.length* gameBoard.length;
+        int finalPosition = gameBoard.length * gameBoard.length;
         this.newLocation = newLocation;
         int playerOldLocation = playerPosition.get(currentPlayer);
         int playerNewLocation = playerOldLocation + newLocation;
 //        getNextPlayer();
-        if(playerNewLocation >= finalPosition) {
+        if (playerNewLocation >= finalPosition) {
             playerNewLocation = finalPosition;
             playerPosition.put(currentPlayer, playerNewLocation);
             winner = currentPlayer;
@@ -116,13 +109,14 @@ public class WormholeGame {
             playerNewLocation = checkWormholes(playerNewLocation);
             playerPosition.put(currentPlayer, playerNewLocation);
             return playerNewLocation;
-            }
+        }
 //            getNextPlayer();
         return playerNewLocation;
     } //end of move method
 
     /**
      * to be able to get the player name from the list of player.
+     *
      * @return players return the player's list.
      */
     public List<Players> getPlayers() {
@@ -131,6 +125,7 @@ public class WormholeGame {
 
     /**
      * to be able to get the player's position from the application file.
+     *
      * @return playerPosition return the hashmap that contains player name and player position as a set of key-value pair.
      */
     public Map<Players, Integer> getPlayerPosition() {
@@ -139,6 +134,7 @@ public class WormholeGame {
 
     /**
      * get the final winner of the game.
+     *
      * @return winner.
      */
     public Players getWinner() {
@@ -147,6 +143,7 @@ public class WormholeGame {
 
     /**
      * list of positive and negative wormholes.
+     *
      * @param newPosition the position that the player end up on after moving.
      * @return the new position of the player if they reach a wormhole.
      */
