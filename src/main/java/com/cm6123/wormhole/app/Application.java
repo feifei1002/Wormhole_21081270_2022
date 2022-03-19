@@ -131,17 +131,19 @@ public final class Application {
 
 
                 System.out.println(wg.getPlayers().get(i).getName() + " is on square " + wg.move(steps) + "!");
-                if(wg.move(steps) == gameBoard.getSIZE()){
-                    System.out.println(wg.getWinner().getName() + "is the winner!");
-                    wg.isGameOver();
-                    break;
-                }
                 System.out.println();
-                wg.getNextPlayer();
+
+
             }
-//            wg.getWinner();
-//            wg.isGameOver();
-//            wg.getWinner();
+            if(wg.move(steps) == gameBoard.getSIZE()* gameBoard.getSIZE()){
+                wg.isGameOver();
+                String winner = wg.getWinner().getName();
+                System.out.println(winner + " is the winner!");
+                wg.isGameOver();
+                break;
+            }else{
+                wg.getCurrentPlayer();
+            }
         }
 
 
