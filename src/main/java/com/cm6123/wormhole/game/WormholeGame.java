@@ -90,14 +90,14 @@ public class WormholeGame {
     /**
      * player move in the game.
      *
-     * @param newLocation the value of the dices after rolling
+     * @param nLocation the value of the dices after rolling
      * @return PlayerNewLocation
      * Player new location after moving.
      */
-    public int move(final int newLocation) {
+    public int move(final int nLocation) {
         Players currentPlayer = getCurrentPlayer();
         int finalPosition = gameBoard.length * gameBoard.length;
-        this.newLocation = newLocation;
+        newLocation = nLocation;
         int playerOldLocation = playerPosition.get(currentPlayer);
         int playerNewLocation = playerOldLocation + newLocation;
 //        getNextPlayer();
@@ -141,13 +141,13 @@ public class WormholeGame {
         return winner;
     }
 
+    /**
+     * Check for is the game still continue or not.
+     * @return boolean
+     */
     public boolean isGameOver(){
-        if(playerPosition.containsKey(gameBoard.length * gameBoard.length)){
+        playerPosition.containsKey(gameBoard.length * gameBoard.length);
          return true;
-        }
-        else{
-            return false;
-        }
     }
     /**
      * list of positive and negative wormholes.
