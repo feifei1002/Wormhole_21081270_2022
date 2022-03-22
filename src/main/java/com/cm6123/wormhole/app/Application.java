@@ -93,6 +93,9 @@ public final class Application {
         System.out.println("Let's play!");
 
         int steps = 0;
+        logger.info("This is not running");
+
+
 
         while(!wg.isGameOver()) {
             for (int i = 0; i < wg.getPlayers().size(); i++) {
@@ -133,19 +136,9 @@ public final class Application {
                 System.out.println(wg.getPlayers().get(i).getName() + " is on square " + wg.move(steps) + "!");
                 System.out.println();
 
-
-            }
-            if(wg.move(steps) == gameBoard.getSIZE()* gameBoard.getSIZE()){
-                wg.isGameOver();
-                String winner = wg.getWinner().getName();
-                System.out.println(winner + " is the winner!");
-                wg.isGameOver();
-                break;
-            }else{
                 wg.getCurrentPlayer();
             }
         }
-
 
         logger.info("Application closing");
 
