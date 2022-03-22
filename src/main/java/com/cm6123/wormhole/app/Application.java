@@ -96,6 +96,7 @@ public final class Application {
         logger.info("This is not running");
 
 
+
         while(!wg.isGameOver()) {
             for (int i = 0; i < wg.getPlayers().size(); i++) {
                 System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
