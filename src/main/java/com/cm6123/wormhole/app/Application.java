@@ -41,14 +41,8 @@ public final class Application {
             int boardSize = sc.nextInt();
             Board gameBoard = new Board(boardSize);
 
-            if (boardSize >= 3 && boardSize <= 10) {
+            if (boardSize >= 5 && boardSize <= 10) {
                 switch (boardSize) {
-                    case 3:
-                        System.out.println("Thank you! Your board has 9 squares.");
-                        break;
-                    case 4:
-                        System.out.println("Thank you! Your board has 16 squares.");
-                        break;
                     case 5:
                         System.out.println("Thank you! Your board has 25 squares.");
                         break;
@@ -135,15 +129,21 @@ public final class Application {
 
                 System.out.println(wg.getPlayers().get(i).getName() + " is on square " + wg.move(steps) + "!");
                 System.out.println();
+                wg.getNextPlayer();
 
-                wg.getCurrentPlayer();
+                if(wg.isGameOver()){
+                    break;
+                }
+                else{
+                    continue;
+                }
             }
-        }
+//            String winner = wg.getWinner().getName();
+//            System.out.println(winner + " is the winner!");
 
+       }
         logger.info("Application closing");
 
-
     }
-
-
 }
+
