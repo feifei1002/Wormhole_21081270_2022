@@ -68,6 +68,7 @@ public final class Application {
                 System.out.println("Sorry, please enter the correct board size");
                 return;
             }
+
         logger.info("No user input was entered");
 
             WormholeGame wg = new WormholeGame(gameBoard);
@@ -87,6 +88,7 @@ public final class Application {
         System.out.println("Let's play!");
 
         int steps = 0;
+
         logger.info("This is not running");
 
 
@@ -102,6 +104,7 @@ public final class Application {
 
                     if (dice1Roll <= 0 || dice1Roll > 6) {
                         System.out.println("Your number is out of bound, please try again");
+//                        continue;
                         return;
                     }
 
@@ -110,6 +113,7 @@ public final class Application {
 
                     if (dice2Roll <= 0 || dice2Roll > 6) {
                         System.out.println("Your number is out of bound, please try again");
+//                        continue;
                         return;
                     }
                     System.out.println("Your first dice rolled a " + dice1Roll + " and your second dice rolled a " + dice2Roll);
@@ -124,24 +128,24 @@ public final class Application {
                     steps = dice1Roll + dice2Roll;
                 } else {
                     System.out.println("Please only enter 'Y' or 'N'!");
+                    return;
                 }
 
 
                 System.out.println(wg.getPlayers().get(i).getName() + " is on square " + wg.move(steps) + "!");
                 System.out.println();
-                wg.getNextPlayer();
-
-                if(wg.isGameOver()){
+                if(wg.getWinner() == null){
+                    wg.getNextPlayer();
+                } else{
+                    System.out.println(wg.getWinner().getName() +" is the winner!");
+                    logger.info("Not able to get the winner");
+                    System.exit(0);
                     break;
                 }
-                else{
-                    continue;
-                }
             }
-//            String winner = wg.getWinner().getName();
-//            System.out.println(winner + " is the winner!");
 
        }
+
         logger.info("Application closing");
 
     }
