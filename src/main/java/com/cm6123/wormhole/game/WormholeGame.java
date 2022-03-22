@@ -103,13 +103,13 @@ public class WormholeGame {
         if (playerNewLocation >= finalPosition) {
             playerNewLocation = finalPosition;
             playerPosition.put(currentPlayer, playerNewLocation);
+            hasPlayerWon(currentPlayer);
             winner = currentPlayer;
         } else {
             playerNewLocation = checkWormholes(playerNewLocation);
             playerPosition.put(currentPlayer, playerNewLocation);
             return playerNewLocation;
         }
-//            getNextPlayer();
         return playerNewLocation;
     } //end of move method
 
@@ -123,15 +123,6 @@ public class WormholeGame {
     }
 
     /**
-     * to be able to get the player's position from the application file.
-     *
-     * @return playerPosition return the hashmap that contains player name and player position as a set of key-value pair.
-     */
-    public Map<Players, Integer> getPlayerPosition() {
-        return playerPosition;
-    }
-
-    /**
      * get the final winner of the game.
      *
      * @return winner.
@@ -140,12 +131,18 @@ public class WormholeGame {
         return winner;
     }
 
+    public boolean hasPlayerWon(Players player) {
+        int playerPos = playerPosition.get(player);
+        int winningPosition = gameBoard.length * gameBoard.length;
+        return playerPos == winningPosition;
+    }
+
     /**
      * Check for is the game still continue or not.
      * @return boolean
      */
     public boolean isGameOver(){
-       return  playerPosition.containsKey(gameBoard.length * gameBoard.length);
+       return  playerPosition.containsValue(gameBoard.length * gameBoard.length);
           }
     /**
      * list of positive and negative wormholes.
