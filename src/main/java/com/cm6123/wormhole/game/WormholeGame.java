@@ -81,7 +81,7 @@ public class WormholeGame {
     /**
      * get the next player that will be moving.
      */
-    public void getNextPlayer() { //make this return void and just adjust the index.
+    public void getNextPlayer() {
 
         playerIndex = ((playerIndex + 1) % players.size());
 
@@ -112,6 +112,7 @@ public class WormholeGame {
         }
         return playerNewLocation;
     } //end of move method
+
 
     /**
      * to be able to get the player name from the list of player.
@@ -155,23 +156,44 @@ public class WormholeGame {
      * @param newPosition the position that the player end up on after moving.
      * @return the new position of the player if they reach a wormhole.
      */
+
+
     public int checkWormholes(final int newPosition) {
         this.holePosition = newPosition;
         if (holePosition == 3) {
             holePosition = 8;
         }
-        if (holePosition == 6) {
+        if (holePosition == 7) {
             holePosition = 20;
         }
-        if (holePosition == 10) {
+        if(holePosition == 27){
+            holePosition = 35;
+        }
+        if(holePosition == 52){
+            holePosition = 60;
+        }
+        if(holePosition == 70){
+            holePosition = 90;
+        }
+        if (holePosition == 11) {
             holePosition = 2;
         }
         if (holePosition == 13) {
             holePosition = 3;
         }
+        if(holePosition == 23) {
+            holePosition = 15;
+        }
+        if(holePosition == 48) {
+            holePosition = 38;
+        }
+        if(holePosition == 75){
+            holePosition = 65;
+        }
         return holePosition;
 
     }
+
 
 
 }

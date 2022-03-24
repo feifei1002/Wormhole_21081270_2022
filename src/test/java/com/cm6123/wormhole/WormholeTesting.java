@@ -131,7 +131,7 @@ public class WormholeTesting {
 
     @DisplayName("Test 4")
     @Test
-    public void ShouldEndOnSquare20When6And1AreRolledOnASize5BoardWithAPositiveWormhole(){
+    public void ShouldEndOnSquare20When4And2AreRolledOnASize5BoardWithAPositiveWormhole(){
        //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
@@ -139,7 +139,7 @@ public class WormholeTesting {
 
         Dice aDice2;
         aDice2 = mock(Dice.class);
-        when(aDice2.roll()).thenReturn(1);
+        when(aDice2.roll()).thenReturn(2);
 
 
         Players p1 = new Players("Fei");
@@ -167,15 +167,15 @@ public class WormholeTesting {
 
     @DisplayName("Test 5")
     @Test
-    public void ShouldEndOnSquare8When1And1AreRolledOnASize5BoardWithTwoPositiveWormholes(){
+    public void ShouldEndOnSquare8When3And3AreRolledOnASize5BoardWithTwoPositiveWormholes(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
-        when(aDice1.roll()).thenReturn(1);
+        when(aDice1.roll()).thenReturn(3);
 
         Dice aDice2;
         aDice2 = mock(Dice.class);
-        when(aDice2.roll()).thenReturn(1);
+        when(aDice2.roll()).thenReturn(3);
 
 
         Players p1 = new Players("Fei");
@@ -196,14 +196,14 @@ public class WormholeTesting {
         wg.getNextPlayer();
 
         //Then
-        assertEquals(8, wg.move(position));
+        assertEquals(20, wg.move(position));
         assertEquals("Cheng", wg.getCurrentPlayer().getName());
 
     }
 
     @DisplayName("Test 6")
     @Test
-    public void ShouldEndOnSquare2When6And3AreRolledOnASize5BoardWithANegativeWormhole(){
+    public void ShouldEndOnSquare2When6And4AreRolledOnASize5BoardWithANegativeWormhole(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
@@ -211,7 +211,7 @@ public class WormholeTesting {
 
         Dice aDice2;
         aDice2 = mock(Dice.class);
-        when(aDice2.roll()).thenReturn(3);
+        when(aDice2.roll()).thenReturn(4);
 
 
         Players p1 = new Players("Fei");
@@ -240,7 +240,7 @@ public class WormholeTesting {
 
     @DisplayName("Test 7")
     @Test
-    public void ShouldEndOnSquare3When6And6AreRolledOnASize5BoardWithANegativeWormhole(){
+    public void ShouldEndOnSquare2When5And5AreRolledOnASize5BoardWithANegativeWormhole(){
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
@@ -281,11 +281,11 @@ public class WormholeTesting {
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
-        when(aDice1.roll()).thenReturn(2);
+        when(aDice1.roll()).thenReturn(4);
 
         Dice aDice2;
         aDice2 = mock(Dice.class);
-        when(aDice2.roll()).thenReturn(3);
+        when(aDice2.roll()).thenReturn(2);
 
         Dice aDice3;
         aDice3 = mock(Dice.class);
@@ -297,11 +297,11 @@ public class WormholeTesting {
 
         Dice aDice5;
         aDice5 = mock(Dice.class);
-        when(aDice5.roll()).thenReturn(6);
+        when(aDice5.roll()).thenReturn(2);
 
         Dice aDice6;
         aDice6 = mock(Dice.class);
-        when(aDice6.roll()).thenReturn(5);
+        when(aDice6.roll()).thenReturn(3);
 
 
         Players p1 = new Players("Fei");
@@ -337,11 +337,11 @@ public class WormholeTesting {
         //Given
         Dice aDice1;
         aDice1 = mock(Dice.class);
-        when(aDice1.roll()).thenReturn(2);
+        when(aDice1.roll()).thenReturn(4);
 
         Dice aDice2;
         aDice2 = mock(Dice.class);
-        when(aDice2.roll()).thenReturn(3);
+        when(aDice2.roll()).thenReturn(2);
 
         Dice aDice3;
         aDice3 = mock(Dice.class);
@@ -353,11 +353,11 @@ public class WormholeTesting {
 
         Dice aDice5;
         aDice5 = mock(Dice.class);
-        when(aDice5.roll()).thenReturn(6);
+        when(aDice5.roll()).thenReturn(3);
 
         Dice aDice6;
         aDice6 = mock(Dice.class);
-        when(aDice6.roll()).thenReturn(6);
+        when(aDice6.roll()).thenReturn(3);
 
 
         Players p1 = new Players("Fei");
