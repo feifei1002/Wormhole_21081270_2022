@@ -174,7 +174,8 @@ public final class Application {
                 e.printStackTrace();
             }finally {
                 System.exit(0);
-            }
+            } //end of InputMismatchException
+
         }// end of playAgain while loop
             logger.info("Application closing");
     }
