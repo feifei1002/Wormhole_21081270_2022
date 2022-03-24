@@ -66,7 +66,7 @@ public final class Application {
                             System.out.println("Thank you! Your board has 100 squares.");
                             break;
                         default:
-                            return;
+                            break;
                     } //end of boardSize switch loop
                 } else {
                     System.out.println("Sorry, please enter the correct board size");
