@@ -123,7 +123,7 @@ public class WormholeGame {
     }
 
     /**
-     * get the final winner of the game.
+     * get the final winner's name of the game.
      *
      * @return winner.
      */
@@ -131,7 +131,12 @@ public class WormholeGame {
         return winner;
     }
 
-    public boolean hasPlayerWon(Players player) {
+    /**
+     * check the condition of any player has won yet.
+     * @param player
+     * @return true when player's position is the winning position
+     */
+    public boolean hasPlayerWon(final Players player) {
         int playerPos = playerPosition.get(player);
         int winningPosition = gameBoard.length * gameBoard.length;
         return playerPos == winningPosition;

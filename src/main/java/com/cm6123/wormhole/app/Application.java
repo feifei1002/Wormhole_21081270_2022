@@ -33,66 +33,67 @@ public final class Application {
 
         logger.info("Application Started with args:{}", String.join(",", args));
 
-        System.out.println("Hello World.  Welcome to Wormhole.");
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Please enter the width dimension that you want to play the game (5-10)");
-
-        int boardSize = sc.nextInt();
-        Board gameBoard = new Board(boardSize);
-
-        if (boardSize >= 5 && boardSize <= 10) {
-            switch (boardSize) {
-                case 5:
-                    System.out.println("Thank you! Your board has 25 squares.");
-                    break;
-                case 6:
-                    System.out.println("Thank you! Your board has 36 squares.");
-                    break;
-                case 7:
-                    System.out.println("Thank you! Your board has 49 squares.");
-                    break;
-                case 8:
-                    System.out.println("Thank you! Your board has 64 squares.");
-                    break;
-                case 9:
-                    System.out.println("Thank you! Your board has 81 squares.");
-                    break;
-                case 10:
-                    System.out.println("Thank you! Your board has 100 squares.");
-                    break;
-                default:
-                    return;
-            }
-        } else {
-            System.out.println("Sorry, please enter the correct board size");
-            return;
-        }
-
-        logger.info("No user input was entered");
-
-        WormholeGame wg = new WormholeGame(gameBoard);
-
-        System.out.println("Please enter the number of player (2-6)");
-        int noOfPlayer = sc.nextInt();
-        if (noOfPlayer >= 2 && noOfPlayer <= 6) {
-            for (int i = 0; i < noOfPlayer; i++) {
-                System.out.println("Please enter player " + (i + 1) + "'s name");
-                String name = sc.next();
-                Players player = new Players(name);
-                wg.addPlayer(player);
-            }
-        } else {
-            System.out.println("Sorry, you didn't enter the correct number of player.");
-        }
-        System.out.println("Let's play!");
-
-        int steps = 0;
         boolean playAgain = true;
+        while(playAgain) {
+            System.out.println("Hello World.  Welcome to Wormhole.");
+            Scanner sc = new Scanner(System.in);
 
-        logger.info("This is not running");
+            System.out.println("Please enter the width dimension that you want to play the game (5-10)");
 
-        while (playAgain) {
+            int boardSize = sc.nextInt();
+            Board gameBoard = new Board(boardSize);
+
+            if (boardSize >= 5 && boardSize <= 10) {
+                switch (boardSize) {
+                    case 5:
+                        System.out.println("Thank you! Your board has 25 squares.");
+                        break;
+                    case 6:
+                        System.out.println("Thank you! Your board has 36 squares.");
+                        break;
+                    case 7:
+                        System.out.println("Thank you! Your board has 49 squares.");
+                        break;
+                    case 8:
+                        System.out.println("Thank you! Your board has 64 squares.");
+                        break;
+                    case 9:
+                        System.out.println("Thank you! Your board has 81 squares.");
+                        break;
+                    case 10:
+                        System.out.println("Thank you! Your board has 100 squares.");
+                        break;
+                    default:
+                        return;
+                } //end of boardSize switch loop
+            } else {
+                System.out.println("Sorry, please enter the correct board size");
+                return;
+            }
+
+            logger.info("No user input was entered");
+
+            WormholeGame wg = new WormholeGame(gameBoard);
+
+            System.out.println("Please enter the number of player (2-6)");
+            int noOfPlayer = sc.nextInt();
+            if (noOfPlayer >= 2 && noOfPlayer <= 6) {
+                for (int i = 0; i < noOfPlayer; i++) {
+                    System.out.println("Please enter player " + (i + 1) + "'s name");
+                    String name = sc.next();
+                    Players player = new Players(name);
+                    wg.addPlayer(player);
+                }
+            } else {
+                System.out.println("Sorry, you didn't enter the correct number of player.");
+            }
+            System.out.println("Let's play!");
+
+            int steps = 0;
+//        boolean playAgain = true;
+
+            logger.info("This is not running");
+
             while (!wg.isGameOver()) {
                 for (int i = 0; i < wg.getPlayers().size(); i++) {
                     System.out.println(wg.getPlayers().get(i).getName() + " - do you want to roll the dice or should I do it for you?");
@@ -132,35 +133,40 @@ public final class Application {
 
                     System.out.println(wg.getPlayers().get(i).getName() + " is on square " + wg.move(steps) + "!");
                     System.out.println();
+
                     if (wg.hasPlayerWon(wg.getCurrentPlayer())) {
                         System.out.println(wg.getWinner().getName() + " is the winner!");
                         logger.info("Not able to get the winner");
                         break;
+                    } else {
+                        wg.getNextPlayer();
                     }
-                    wg.getNextPlayer();
-
-                }
+                }// end of for loop
                 wg.isGameOver();
 
-            }
 
-            System.out.println("Do you want to play again?");
-            System.out.println("Type 'Y' to play again or 'N' to quit");
-            String userInput = sc.next();
+                if (wg.isGameOver()) {
+                    System.out.println("Do you want to play again?");
+                    System.out.println("Type 'Y' to play again or 'N' to quit");
+                    String userInput = sc.next();
 
-            switch (userInput) {
-                case "Y":
-                    playAgain = true;
-                    new WormholeGame(gameBoard);
-                    break;
-                case "N":
-                    playAgain = false;
-                    break;
-                default:
-                    break;
-            }
 
-        }
+                    switch (userInput) {
+                        case "Y":
+                            playAgain = true;
+                            break;
+                        case "N":
+                            playAgain = false;
+                            System.out.println("Thank you for playing! See you next time!");
+                            System.exit(0);
+                            break;
+                        default:
+                            break;
+                    }// end of userInput switch loop
+
+                }// end of !isGameOver if loop
+            }// end of !isGameOver while loop
+        }// end of playAgain while loop
             logger.info("Application closing");
     }
 }
