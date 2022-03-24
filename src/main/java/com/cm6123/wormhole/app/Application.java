@@ -145,6 +145,7 @@ public final class Application {
                 wg.isGameOver();
 
 
+                System.out.println();
                 if (wg.isGameOver()) {
                     System.out.println("Do you want to play again?");
                     System.out.println("Type 'Y' to play again or 'N' to quit");
