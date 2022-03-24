@@ -166,11 +166,29 @@ public class WormholeGame {
         if (holePosition == 7) {
             holePosition = 20;
         }
+        if(holePosition == 27){
+            holePosition = 35;
+        }
+        if(holePosition == 52){
+            holePosition = 60;
+        }
+        if(holePosition == 70){
+            holePosition = 90;
+        }
         if (holePosition == 11) {
             holePosition = 2;
         }
         if (holePosition == 13) {
             holePosition = 3;
+        }
+        if(holePosition == 23) {
+            holePosition = 15;
+        }
+        if(holePosition == 48) {
+            holePosition = 38;
+        }
+        if(holePosition == 75){
+            holePosition = 65;
         }
         return holePosition;
 
