@@ -169,11 +169,9 @@ public final class Application {
                     }// end of !isGameOver if loop
                 }// end of !isGameOver while loop
 
-            }catch (InputMismatchException e){
-                System.out.println("Please only enter integer for board size!");
+            }catch (InputMismatchException e) {
+                System.out.println("Wrong type of input!");
                 e.printStackTrace();
-            }finally {
-                System.exit(0);
             } //end of InputMismatchException
 
         }// end of playAgain while loop
