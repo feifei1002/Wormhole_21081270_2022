@@ -36,7 +36,6 @@ public class WormholeTesting {
         Players p2 = new Players("Cheng");
 
         Board size4 = new Board(4);
-        size4.createBoard();
 
         WormholeGame wg = new WormholeGame(size4);
         wg.addPlayer(p1);
@@ -70,7 +69,6 @@ public class WormholeTesting {
         Players p2 = new Players("Cheng");
 
         Board size3 = new Board(3);
-        size3.createBoard();
 
         WormholeGame wg = new WormholeGame(size3);
         wg.addPlayer(p1);
@@ -100,7 +98,6 @@ public class WormholeTesting {
         Players p4 = new Players("Sihyun");
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
@@ -147,7 +144,6 @@ public class WormholeTesting {
 
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
@@ -183,7 +179,6 @@ public class WormholeTesting {
 
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
@@ -219,7 +214,6 @@ public class WormholeTesting {
 
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
@@ -256,7 +250,6 @@ public class WormholeTesting {
 
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
@@ -309,7 +302,6 @@ public class WormholeTesting {
 
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
@@ -365,7 +357,6 @@ public class WormholeTesting {
 
 
         Board size5 = new Board(5);
-        size5.createBoard();
 
         WormholeGame wg = new WormholeGame(size5);
         wg.addPlayer(p1);
